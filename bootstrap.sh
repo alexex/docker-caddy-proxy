@@ -8,10 +8,9 @@ config_file=config/caddyfile
 
 mkdir -p $(dirname $config_file)
 cat > $config_file << EOF
-$domain
+$domain:80
 # tls $email
 
-:80
 proxy / server:$port {
        proxy_header Host {host}
        proxy_header X-Real-IP {remote}
