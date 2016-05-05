@@ -10,7 +10,10 @@ mkdir -p $(dirname $config_file)
 cat > $config_file << EOF
 $domain:80
 
-proxy / server:$port
+proxy / server:$port {
+    proxy_header Host {host}
+}
+
 EOF
 
 exec /usr/sbin/caddy -conf $config_file $@
